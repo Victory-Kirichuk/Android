@@ -3,6 +3,7 @@ package com.example.a1111111;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,8 +14,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.a1111111.fragment.Catalog_fragment;
+import com.example.a1111111.fragment.MySeriesFragment;
+import com.example.a1111111.fragment.NewSeriesFragment;
+import com.example.a1111111.fragment.ScheduleFragment;
+import com.example.a1111111.fragment.Top_fragment;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    NewSeriesFragment newSeriesFragment;
+    ScheduleFragment scheduleFragment;
+    Top_fragment top_fragment;
+    Catalog_fragment catalog_fragment;
+    MySeriesFragment mySeriesFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +52,13 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        newSeriesFragment = new NewSeriesFragment();
+        scheduleFragment = new ScheduleFragment();
+        top_fragment = new Top_fragment();
+        catalog_fragment = new Catalog_fragment();
+        mySeriesFragment = new MySeriesFragment();
+
     }
 
     @Override
@@ -80,20 +99,21 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         if (id == R.id.schedule) {
-            // Handle the camera action
+            fragmentTransaction.replace(R.id.container, scheduleFragment);
         } else if (id == R.id.top) {
-
+            fragmentTransaction.replace(R.id.container, top_fragment);
         } else if (id == R.id.newSeries) {
-
+            fragmentTransaction.replace(R.id.container, newSeriesFragment);
         } else if (id == R.id.myseries) {
-
+            fragmentTransaction.replace(R.id.container, mySeriesFragment);
         } else if (id == R.id.catalog) {
-
+            fragmentTransaction.replace(R.id.container, catalog_fragment);
         } //else if (id == R.id.nav_send) {
 
-       // }
-
+        // }
+fragmentTransaction.commit();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
