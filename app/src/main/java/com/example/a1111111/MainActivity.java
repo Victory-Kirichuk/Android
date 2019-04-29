@@ -1,5 +1,6 @@
 package com.example.a1111111;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,12 +14,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import com.example.a1111111.fragment.Catalog_fragment;
 import com.example.a1111111.fragment.MySeriesFragment;
 import com.example.a1111111.fragment.NewSeriesFragment;
 import com.example.a1111111.fragment.ScheduleFragment;
 import com.example.a1111111.fragment.Top_fragment;
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -118,4 +121,7 @@ fragmentTransaction.commit();
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
 }
